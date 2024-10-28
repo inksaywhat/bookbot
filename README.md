@@ -1,5 +1,4 @@
 # bookbot
-BookBot is my first project!
 
 **BookBot** is a simple command-line Python application that reads the text of a book and generates a report based on various text analysis metrics, such as word count, sentence count, average word length, and character frequency. This project was built as part of my learning journey through the Boot.dev curriculum.
 
