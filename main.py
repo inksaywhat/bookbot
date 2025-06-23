@@ -1,13 +1,17 @@
-from stats import count_words, count_characters
+from stats import (
+    get_num_words,
+    chars_dict_to_sorted_list,
+    get_chars_dict,
+)
+
 
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
-    word_count = count_words(text)
-    character_counts = count_characters(text)
-
-    # Print the report
-    print_report(book_path, word_count, character_counts)
+    num_words = get_num_words(text)
+    chars_dict = get_chars_dict(text)
+    chars_sorted_list = chars_dict_to_sorted_list(chars_dict)
+    print_report(book_path, num_words, chars_sorted_list)
 
 
 def get_book_text(path):
@@ -15,28 +19,18 @@ def get_book_text(path):
         return f.read()
 
 
-def print_report(path, word_count, character_counts):
-    # Print the header of the report
-    print(f"--- Begin report of {path} ---")
-    print(f"{word_count} words found in the document\n")
+def print_report(book_path, num_words, chars_sorted_list):
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {book_path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {num_words} total words")
+    print("--------- Character Count -------")
+    for item in chars_sorted_list:
+        if not item["char"].isalpha():
+            continue
+        print(f"{item['char']}: {item['num']}")
 
-    # Convert the character counts dictionary to a list of dictionaries
-    char_list = [{"char": char, "num": count} for char, count in character_counts.items()]
-
-    # Define the sort function
-    def sort_on(dict):
-        return dict["num"]
-
-    # Sort the list by the number of occurrences (most frequent first)
-    char_list.sort(reverse=True, key=sort_on)
-
-    # Print each character and its count
-    for item in char_list:
-        print(f"'{item['char']}': {item['num']}")
-
-    # Print the footer of the report
-    print(f"--- End report ---")
+    print("============= END ===============")
 
 
-if __name__ == "__main__":
-    main()
+main()
