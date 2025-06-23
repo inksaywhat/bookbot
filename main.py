@@ -32,7 +32,7 @@ def print_report(path, word_count, character_counts):
 
     # Print each character and its count
     for item in char_list:
-        print(f"The '{item['char']}' character was found {item['num']} times")
+        print(f"'{item['char']}': {item['num']}")
 
     # Print the footer of the report
     print(f"--- End report ---")
