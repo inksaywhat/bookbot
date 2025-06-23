@@ -1,4 +1,4 @@
-from stats import count_words
+from stats import count_words, count_characters
 
 def main():
     book_path = "books/frankenstein.txt"
@@ -13,20 +13,6 @@ def main():
 def get_book_text(path):
     with open(path) as f:
         return f.read()
-
-
-def count_characters(text):
-    text = text.lower()
-    char_count = {}
-
-    for char in text:
-        if char.isalpha():  # Only consider alphabetic characters
-            if char in char_count:
-                char_count[char] += 1
-            else:
-                char_count[char] = 1
-
-    return char_count
 
 
 def print_report(path, word_count, character_counts):
